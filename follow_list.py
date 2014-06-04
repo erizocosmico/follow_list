@@ -37,13 +37,10 @@ def main():
     
     # Retrieve all users in the list
     (cursor, members) = (-1, [])
-    first = True
     while cursor != 0:
         response = t.lists.members(owner_screen_name=username, slug=list_name, cursor=cursor)
         cursor = int(response['next_cursor'])
-        if not first:
-            members += response['users']
-        first = False
+        members += response['users']
 
     print('%d users retrieved.' % len(members))
 
